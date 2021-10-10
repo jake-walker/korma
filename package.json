@@ -1,0 +1,32 @@
+{
+  "name": "korma",
+  "version": "1.0.0",
+  "description": "A library to simplify storing JavaScript objects in KV databases",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "repository": "https://github.com/jake-walker/korma",
+  "author": "Jake Walker <hi@jakew.me>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^2.2.2",
+    "@types/node": "^16.10.3",
+    "@types/redis": "^2.8.32",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "nanoid": "^3.1.29",
+    "redis": "^3.1.2"
+  }
+}
