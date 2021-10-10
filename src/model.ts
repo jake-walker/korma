@@ -45,7 +45,7 @@ class Model {
 
     const data: { [key: string]: string } = await keys.reduce(async (obj, key) => {
       const value = await adapter.get(key);
-      const fieldName = key.split(':').at(-1);
+      const fieldName = key.split(':').slice(-1)[0];
       if (value === null || typeof fieldName === 'undefined') return obj;
       return {
         ...(await obj),
@@ -65,7 +65,7 @@ class Model {
       async (obj: Promise<{ [key: string]: { [key: string]: string }}>, key) => {
         const value = await adapter.get(key);
         const id = key.split(':')[1];
-        const fieldName = key.split(':').at(-1);
+        const fieldName = key.split(':').slice(-1)[0];
         if (value === null || typeof fieldName === 'undefined') return obj;
 
         let current = (await obj)[id];
