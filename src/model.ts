@@ -55,7 +55,7 @@ class Model {
 
     data.id = id;
 
-    return Object.setPrototypeOf(data, this.prototype);
+    return Object.assign(new this(adapter), data);
   }
 
   static async findAll(adapter: KvAdapter) {
@@ -82,7 +82,7 @@ class Model {
     const models = await Promise.all(Object.keys(data).map(async (id) => {
       const fields = data[id];
       fields.id = id;
-      return Object.setPrototypeOf(fields, this.prototype);
+      return Object.assign(new this(adapter), fields);
     }));
 
     return models;

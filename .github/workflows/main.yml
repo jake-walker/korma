@@ -14,6 +14,10 @@ jobs:
           node-version: 14
       - name: Install dependencies
         run: yarn install --dev
+      - name: Lint
+        run: yarn run lint
+      - name: Test
+        run: yarn run test
       - name: Build
         run: yarn run build
   tag-new-version:
