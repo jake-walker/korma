@@ -83,6 +83,15 @@ class Korma {
       ...value,
     }));
   }
+
+  async exists(type: string, id: string) {
+    const keys = await this.kvAdapter.list(`${type}:${id}:`);
+    return keys.length > 0;
+  }
+
+  async getAttribute(type: string, id: string, attribute: string) {
+    return this.kvAdapter.get(`${type}:${id}:${attribute}`);
+  }
 }
 
 export default Korma;
