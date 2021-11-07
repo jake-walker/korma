@@ -1,6 +1,6 @@
 # Korma
 
-**Korma** is a library for simplifying working with Key-Value databases. It is a very simple ORM that converts classes into keys and values.
+**Korma** is a library for simplifying working with Key-Value databases. It is a very simple ORM that converts JSON objects into keys and values.
 
 > This is a work-in-progress!
 
@@ -12,36 +12,35 @@
 ## Usage
 
 ```ts
-import { Model } from 'korma';
+import { Korma } from 'korma';
 import RedisAdapter from 'korma/adapters/redis';
 
-const adapter = RedisAdapter();
+const adapter = new RedisAdapter();
+const korma = new Korma(adapter);
 
-class Person extends Model {
-  firstName: string;
-  lastName: string;
+// Create a person
+const person1 = {
+  firstName: 'Han',
+  lastName: 'Solo'
+};
+// Save the person object. When saving, the first argument is the type of object.
+// It kinda works like a namespace
+await korma.save('Person', person1);
 
-  constructor(firstName: string, lastName: string) {
-    super(adapter);
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-}
-
-// Create and save a person
-const person1 = new Person('Han', 'Solo');
-await person1.save();
-
-// Create and save a second person
-const person2 = new Person('Luke', 'Skywalker');
-await person2.save();
+// Create and save a second person, this time with a ID manually given
+const person2 = {
+  _id: 'lskywalker',
+  firstName: 'Luke',
+  lastName: 'Skywalker'
+};
+await korma.save('Person', person2);
 
 // Get a person from their ID
-const han = await Person.findOne(person1.id);
+const han = await korma.findOne('Person', person1.id);
 console.log(han.firstName, han.lastName);
 
 // Get all the saved people
-const people = await Person.findAll(adapter);
+const people = await korma.findAll('Person');
 for (const person of people) {
   console.log(person.firstName, person.lastName);
 }
