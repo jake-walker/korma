@@ -1,3 +1,3 @@
-import Model from './model';
+import Korma from './korma';
 
-export default { Model };
+export default { Korma };

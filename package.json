@@ -1,7 +1,7 @@
 {
   "name": "korma-kv",
-  "version": "0.0.2",
-  "description": "A library to simplify storing JavaScript objects in KV databases",
+  "version": "1.0.0",
+  "description": "A library to simplify storing JSON objects in KV databases",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
