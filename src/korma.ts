@@ -90,7 +90,13 @@ class Korma {
   }
 
   async getAttribute(type: string, id: string, attribute: string) {
-    return this.kvAdapter.get(`${type}:${id}:${attribute}`);
+    const value = await this.kvAdapter.get(`${type}:${id}:${attribute}`);
+
+    if (value === null) {
+      return null;
+    }
+
+    return JSON.parse(value);
   }
 }
 
